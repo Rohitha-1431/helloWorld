@@ -1,0 +1,104 @@
+For:
+1)Write a program that takes a command line argument n and prints a table of the powers of 2 that are less than or equal to 2^n.
+function is_power_of_two ()
+{
+declare -i n=$1
+(( n -ge 0 && ( n & ( n-1 )) == 0 ))
+}
+for number;do
+if is_power_of_two "$number";
+then
+printf "%d\n" "$number"
+fi
+done
+3) Write a program that takes a input ad determines if the number is a prime?
+echo"enter num"
+read num
+for (( i=2; i<=num/2; i++ ))
+do
+if [ $(( num%i )) -eq 0 ]
+then
+echo "$num is not a prime number"
+exit
+fi
+done
+echo "$num is a prime number"
+4) Extend the program to take a range of number as input and output the prime numbers in that range
+echo enter m and n
+read m n
+for a in $( seq $m $n )
+do
+k=0
+for i in $(seq 2 $(expr $a - 1 ))
+do
+if [ $(expr $a % $i) -eq 0 ]
+then
+k=1
+break
+fi
+done
+if [ $k -eq 0 ]
+then
+echo $a
+fi
+done
+5)write a program that computes a factorial of a number taken as input.5 Factorial-5!=1*2*3*4*5
+echo "enter a number"
+read num
+fact=1
+for (( i=2;i<=num;i++ ))
+do
+fact=$(( fact * i ))
+done
+echo $fact
+Functios:
+2)Write a function to check if the two numbers are palindrome
+echo "Enter numbers n"
+read n
+m=$n
+rev=0
+while [ $n -gt 0 ]
+do
+r='expr $n % 10'
+rev='expr $rev \* 10 + $r'
+n='expr $n /10'
+done
+if [ $m -eq $rev ]
+then
+echo "$m is palindrome"
+else
+echo "$m is not palindrome"
+fi
+3)Take a number from user and check if the number is a prime then show that its palindromic prime
+echo "enter a number"
+read num
+i=2
+f=0
+while ( $i -le 'expr $num / 2' )
+do
+if ( 'expr $num % $i' -eq 0 )
+then f=1
+fi
+i='expr $i + 1'
+done
+if ( $f -eq 1 )
+then echo " it is not a prime num"
+else
+echo "it is a prime num"
+fi
+z=$num
+s=0
+rev=" "
+temp=$num
+while [ $num -gt 0 ]
+do
+s=$(( $num % 10 ))
+num=$(( $num  10 ))
+rev=$( echo ${rev}${s} )
+done
+if[ $temp -eq $rev ];
+then
+echo "number is palindrome"
+else
+echo"number is not palindrome"
+fi
